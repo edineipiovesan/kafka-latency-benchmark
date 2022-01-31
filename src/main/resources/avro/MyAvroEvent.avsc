@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "MyAvroEvent",
+  "namespace": "com.github.edineipiovesan.messages",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "avro.java.string": "String",
+      "description": "Message unique identifier"
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "avro.java.string": "String",
+      "default": "This is a default message",
+      "doc": "Message content"
+    }
+  ]
+}

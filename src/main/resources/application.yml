@@ -1,0 +1,28 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: kafka-benchmark-latency
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    properties:
+      schema.registry.url: http://localhost:8081
+      specific.avro.reader: true
+      auto.register.schemas: true
+      request.timeout.ms: 360000
+    listener:
+      ack-mode: manual
+    consumer:
+      group-id: ${spring.application.name}-1
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      enable-auto-commit: false
+      client-id: ${random.long}
+      max-poll-records: 100
+    producer:
+      batch-size: 100000
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
