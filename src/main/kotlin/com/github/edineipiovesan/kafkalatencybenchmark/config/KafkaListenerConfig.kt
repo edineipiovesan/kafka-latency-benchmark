@@ -1,7 +1,6 @@
 package com.github.edineipiovesan.kafkalatencybenchmark.config
 
 import com.github.edineipiovesan.messages.MyAvroEvent
-import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -26,6 +25,7 @@ class KafkaListenerConfig(private val kafkaProperties: KafkaProperties) {
         factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
         factory.consumerFactory = consumerFactory()
         factory.isBatchListener = true
+        factory.setConcurrency(12)
 
         return factory
     }

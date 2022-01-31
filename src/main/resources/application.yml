@@ -21,7 +21,7 @@ spring:
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       enable-auto-commit: false
       client-id: ${random.long}
-      max-poll-records: 100
+      max-poll-records: 150
     producer:
       batch-size: 100000
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
